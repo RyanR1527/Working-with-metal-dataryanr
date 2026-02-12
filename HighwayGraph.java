@@ -6,8 +6,8 @@
  * Starter implementation for the METAL Learning Module
  * Working with METAL Data
  * 
- * @author Jim Teresco ADD LAB PARTNER NAMES HERE
- * @version January 2024
+ * @author Jim Teresco Ryan Razzano
+ * @version Febraury 2026
  */
 
 import java.io.File;
@@ -219,8 +219,48 @@ public class HighwayGraph
         s.close();
 
         // print summary of the graph
-        System.out.println(g);
+
+        //summary removed for easier testing
+    
+       // System.out.println(g);
 
 	// ADD CODE HERE TO COMPLETE LAB TASKS
+    int north=0;
+    int south=0;
+    int east=0;
+    int west=0;
+    int longest=0;
+    int shortest=0;
+    for (int check = 1; check < g.vertices.length; check++) {
+    if (g.vertices[check].point.lat > g.vertices[north].point.lat) {
+        north=check;
+    }
+    if (g.vertices[check].point.lat < g.vertices[south].point.lat) {
+        south=check;
+    }
+    if (g.vertices[check].point.lng > g.vertices[east].point.lng) {
+        east=check;
+    }
+    if (g.vertices[check].point.lng < g.vertices[west].point.lng) {
+        west=check;
+    }
+    if (g.vertices[check].label.length() < g.vertices[shortest].label.length()) {
+        shortest=check;
+    }
+    if (g.vertices[check].label.length() > g.vertices[longest].label.length()) {
+        longest=check;
+    }
+}
+
+System.out.println(
+    "North extreme: #" + north + " " + g.vertices[north].point + " " + g.vertices[north].label + "\n" +
+    "South extreme: #" + south + " " + g.vertices[south].point + " " + g.vertices[south].label + "\n" +
+    "East extreme: #" + east + " " + g.vertices[east].point + " " + g.vertices[east].label + "\n" +
+    "West extreme: #" + west + " " + g.vertices[west].point + " " + g.vertices[west].label + "\n" +
+    "Shortest vertex label: #" + shortest + " (length " + g.vertices[shortest].label.length() + ") " + g.vertices[shortest].label + "\n" +
+    "Longest vertex label: #" + longest + " (length " + g.vertices[longest].label.length() + ") " + g.vertices[longest].label
+    );
+
+
     }
 }
